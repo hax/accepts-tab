@@ -1,0 +1,47 @@
+<!doctype html>
+
+<head>
+<meta charset=utf-8>
+<script async src=accepts-tab.js></script>
+<script async src=debug-input.js></script>
+<style>
+div[contenteditable] {
+	white-space: pre-wrap;
+	border: 1px solid #ccc;
+	min-height: 4em;
+
+	/*
+	By default, contenteditable will have tab-size as 4,
+	but explicitly setting tab-size in integer is buggy.
+	It seems in FF the integer value will be divided by 2,
+	and in Chrome the integer value will be added by 1.
+	So we use ch unit instead.
+	*/
+	-moz-tab-size: 3ch;
+	tab-size: 3ch;
+}
+textarea {
+	min-height: 4em;
+	-moz-tab-size: 3;
+	tab-size: 3;
+}
+</style>
+</head>
+
+<body>
+
+<div contenteditable class='accepts-tab'>
+	0123456789
+	a	cd
+</div>
+
+<hr>
+
+<textarea class='accepts-tab'>
+	0123456789
+	a	cd
+</textarea>
+
+<hr>
+
+<input value="test" class='accepts-tab'>

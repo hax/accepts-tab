@@ -1,0 +1,34 @@
+<!doctype html>
+
+<style>
+.editor {
+	white-space: pre-wrap;
+	border: 1px solid #ccc;
+	min-height: 30px;
+}
+</style>
+
+<p>Original zhihu question: <a href=https://www.zhihu.com/question/412617662>html中div的tab(\t)的渲染宽度受什么影响？</a></p>
+<p>Code from <a href=https://jsfiddle.net/githoniel/ynbqumx9>jsfiddle.net/githoniel/ynbqumx9</a></p>
+
+<div class="editor" contenteditable=""><p></p></div>
+
+<script>
+const editorDOM = document.querySelector('.editor')
+editorDOM.addEventListener('keydown', (event) => {
+	if(event.keyCode === 9) {
+		event.preventDefault()
+		event.stopPropagation()
+
+		const offset = editorDOM.textContent.length
+		editorDOM.textContent += '\t'
+
+		const newSelection = window.getSelection()
+		const domRange = window.document.createRange()
+		newSelection.removeAllRanges()
+		domRange.setStart(editorDOM.childNodes[0], offset)
+		domRange.setEnd(editorDOM.childNodes[0], offset)
+		newSelection.addRange(domRange)
+	}
+})
+</script>
