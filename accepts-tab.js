@@ -1,4 +1,4 @@
-void function () {
+void function (d) {
 
 	function isEditable(e) {
 		return e.isContentEditable
@@ -38,12 +38,12 @@ void function () {
 				// see https://github.com/w3c/editing/issues/160
 				// and https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
 				if (document.queryCommandEnabled('insertText')) {
-					console.log('execCommand insertText')
+					d('execCommand insertText')
 					document.execCommand('insertText', false, '\t')
 				} else if (e.target.setRangeText) {
 					// only FF will go to this branch
 					// undo is broken, no workaround
-					console.log('setRangeText')
+					d('setRangeText')
 					const c = e.target
 					c.setRangeText('\t', c.selectionStart, c.selectionEnd, 'end')
 					// trigger input event manually, though not very useful
@@ -52,10 +52,10 @@ void function () {
 					c.dispatchEvent(
 						new InputEvent('input', {inputType: 'insertText', data: '\t'}))
 				} else {
-					console.warn('can not insert tab for non-editable element', e.target)
+					d('can not insert tab for non-editable element', e.target)
 				}
 			}
 		}
 	}, {capture: true})
 
-}
+}(console.log)
