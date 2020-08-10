@@ -44,7 +44,6 @@ void function (d) {
 					// only FF will go to this branch
 					// undo is broken, no workaround
 					d('setRangeText')
-					const c = e.target
 					c.setRangeText('\t', c.selectionStart, c.selectionEnd, 'end')
 					// trigger input event manually, though not very useful
 					// not trigger beforeinput event because Chrome execCommand also
@@ -52,7 +51,7 @@ void function (d) {
 					c.dispatchEvent(
 						new InputEvent('input', {inputType: 'insertText', data: '\t'}))
 				} else {
-					d('can not insert tab for non-editable element', e.target)
+					d('can not insert tab for non-editable element', c)
 				}
 			}
 		}
