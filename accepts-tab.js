@@ -32,7 +32,6 @@ void function (d) {
 			&& e.key === 'Tab' && !e.isComposing && notShortcut(e)
 		) {
 			e.preventDefault()
-			e.stopImmediatePropagation()
 
 			if (!e.shiftKey) {
 				// prefer execCommand which support undo and sending input events
