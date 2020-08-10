@@ -1,4 +1,5 @@
 void function (d) {
+	'use strict'
 
 	function isEditable(e) {
 		return e.isContentEditable

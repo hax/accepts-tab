@@ -1,4 +1,5 @@
 void function () {
+	'use strict'
 
 	const eventTypes = [
 		'keydown', 'keyup', 'keypress',
